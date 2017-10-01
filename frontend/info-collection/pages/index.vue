@@ -7,7 +7,7 @@
                 
         v-card-text
           v-layout(row wrap)
-            v-flex(xs12 sm6).mx-3
+            v-flex(xs12 sm6).px-3
               v-form
                 v-text-field(label="Name" v-model="name", required)
                 v-text-field(label="Furman ID" v-model="furmanID" required)
@@ -31,7 +31,7 @@
                 v-text-field(label="Pronounce Middle Name" v-model="pronounceMiddleName" required)
                 v-text-field(label="Pronounce Last Name" v-model="pronounceLastName" required)
             
-            v-flex(xs12 sm6).mx-3
+            v-flex(xs12 sm6).px-3
               v-form
                 v-text-field(label="Rhyme First Name" v-model="rhymeFirstName" required)
                 v-text-field(label="Rhyme Middle Name" v-model="rhymeMiddleName" required)
