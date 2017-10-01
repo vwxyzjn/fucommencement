@@ -1,30 +1,87 @@
-<template>
-  <v-layout column justify-center align-center>
-    <v-flex xs12 sm8 md6>
-      <div class="text-xs-center">
-        <img src="/v.png" alt="Vuetify.js" class="mb-5" />
-      </div>
-      <v-card>
-        <v-card-title class="headline">Welcome to the Vuetify + Nuxt.js template</v-card-title>
-        <v-card-text>
-          <p>Vuetify is a progressive Material Design component framework for Vue.js. It was designed to empower developers to create amazing applications.</p>
-          <p>For more information on Vuetify, check out the <a href="https://vuetifyjs.com" target="_blank">documentation</a>.</p>
-          <p>If you have questions, please join the official <a href="https://chat.vuetifyjs.com/" target="_blank" title="chat">discord</a>.</p>
-          <p>Find a bug? Report it on the github <a href="https://github.com/vuetifyjs/vuetify/issues" target="_blank" title="contribute">issue board</a>.</p>
-          <p>Thank you for developing with Vuetify and I look forward to bringing more exciting features in the future.</p>
-          <div class="text-xs-right">
-            <em><small>&mdash; John Leider</small></em>
-          </div>
-          <hr class="my-3">
-          <a href="https://nuxtjs.org/" target="_blank">Nuxt Documentation</a>
-          <br>
-          <a href="https://github.com/nuxt/nuxt.js" target="_blank">Nuxt GitHub</a>
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn primary flat nuxt to="/inspire">Continue</v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-flex>
-  </v-layout>
+<template lang="pug">
+  v-layout(row wrap justify-center)
+    v-flex(xs12 sm10)
+      v-card.my-3
+        v-card-media.deep-purple.white--text
+          span.headline.my-4.ml-4 Please fill in the following form
+                
+        v-card-text
+          v-layout(row)
+            v-flex(xs12 sm6).mx-3
+              v-form
+                v-text-field(label="Name" v-model="name", required)
+                v-text-field(label="Furman ID" v-model="furmanID" required)
+              
+                v-dialog(persistent v-model="anticipatedCompletionDateModal" lazy full-width)
+                  v-text-field(slot="activator", label="Please select a date", v-model="anticipatedCompletionDate", readonly)
+                  v-date-picker(v-model="anticipatedCompletionDate", scrollable dark)
+                    template(scope="{ save, cancel }")
+                      v-card-actions
+                        v-btn( primary @click.native="cancel()") Cancel
+                        v-btn( primary @click.native="save()") Save
+                
+                v-select(:items="degreeExpectedOptions", v-model="degreeExpected", label="Select the degree expected" dark, item-value="text")
+                v-text-field(label="Major(s)" v-model="majors" required)
+                v-text-field(label="Interdisciplinary Minor(s) " v-model="interdisciplinaryMinor" required)
+                v-text-field(label="Diploma First Name" v-model="diplomafirstName" required)
+                v-text-field(label="Diploma Middle Name" v-model="diplomamiddleName" required)
+                v-text-field(label="Diploma Last Name" v-model="diplomalastName" required)
+                v-text-field(label="Hometown and State" v-model="hometownAndState" required)
+                v-text-field(label="Pronounce First Name" v-model="pronounceFirstName" required)
+                v-text-field(label="Pronounce Middle Name" v-model="pronounceMiddleName" required)
+                v-text-field(label="Pronounce Last Name" v-model="pronounceLastName" required)
+            
+            v-flex(xs12 sm6).mx-3
+              v-form
+                v-text-field(label="Rhyme First Name" v-model="rhymeFirstName" required)
+                v-text-field(label="Rhyme Middle Name" v-model="rhymeMiddleName" required)
+                v-text-field(label="Rhyme Last Name" v-model="rhymeLastName" required)
+                v-text-field(label="Post-Grad Address" v-model="postGradAddress" required)
+                v-text-field(label="Post-Grad Address Two" v-model="postGradAddressTwo" required)
+                v-text-field(label="Post-Grad City" v-model="postGradCity" required)
+                v-text-field(label="Post-Grad State" v-model="postGradState" required)
+                v-text-field(label="Post-Grad Postal Code" v-model="postGradPostalCode" required)
+                v-text-field(label="Post-Grad Telephone" v-model="postGradTelephone" required)
+                v-text-field(label="Post-Grad Email" v-model="postGradEmail" required)
+                v-select(:items="intentConfirmOptions", v-model="intentConfirm", label="Intent Confirm" dark, item-value="text")
+        v-card-actions
+          v-spacer
+          v-btn(primary nuxt to="/inspire") Submit
+
 </template>
+
+<script>
+export default {
+  data () {
+    return {
+      name: '',
+      furmanID: '',
+      anticipatedCompletionDate: null,
+      anticipatedCompletionDateModal: false,
+      degreeExpected: '',
+      degreeExpectedOptions: ['BA', 'BLA', 'BM', 'BS', 'MA', 'MS', 'EDS', 'PBC'],
+      majors: '',
+      interdisciplinaryMinor: '',
+      diplomafirstName: '',
+      diplomamiddleName: '',
+      diplomalastName: '',
+      hometownAndState: '',
+      pronounceFirstName: '',
+      pronounceMiddleName: '',
+      pronounceLastName: '',
+      rhymeFirstName: '',
+      rhymeMiddleName: '',
+      rhymeLastName: '',
+      postGradAddress: '',
+      postGradAddressTwo: '',
+      postGradCity: '',
+      postGradState: '',
+      postGradPostalCode: '',
+      postGradTelephone: '',
+      postGradEmail: '',
+      intentConfirmOptions: ['Y', 'N'],
+      intentConfirm: ''
+    }
+  }
+}
+</script>

@@ -1,10 +1,10 @@
 <template>
-  <v-app light>
+  <v-app dark>
     <v-toolbar fixed class="deep-purple white--text">
       <v-toolbar-title v-text="title"></v-toolbar-title>
     </v-toolbar>
     <main>
-      <v-container>
+      <v-container fluid>
         <nuxt />
       </v-container>
     </main>
