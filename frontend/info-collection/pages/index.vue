@@ -6,7 +6,7 @@
           span.headline.my-4.ml-4 Please fill in the following form
                 
         v-card-text
-          v-layout(row)
+          v-layout(row wrap)
             v-flex(xs12 sm6).mx-3
               v-form
                 v-text-field(label="Name" v-model="name", required)

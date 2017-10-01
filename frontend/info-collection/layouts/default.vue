@@ -28,7 +28,7 @@
         miniVariant: false,
         right: true,
         rightDrawer: false,
-        title: 'Furman Commencement Information Collection'
+        title: 'Furman Commencement'
       }
     }
   }
