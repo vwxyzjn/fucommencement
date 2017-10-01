@@ -15,9 +15,20 @@
 
 ## Info-collection front end dev list
 
-* acquire degree-application information
-* acquire **photos** of students
+* (finished) acquire degree-application information
+* (finished) acquire **photos** of students
 * acquire **sound** file of student pronouncing name exactly as intended for the event 
+    * is it possible to make this requirement optional?
+    * cross-platform solution for uploading audio files is difficult
+        * IOS and andriod, for example, doesn't support related API to various degree
+            * http://caniuse.com/#feat=mediarecorder
+            * http://caniuse.com/#feat=stream 
+        * Chrome requires ``https`` for record audio
+            * https://stackoverflow.com/questions/34820578/how-to-capture-audio-in-javascript
+    * maybe only a small portion of people would like to have their name pronounced in a specific way.
+    * even though desktop always support the audio recording API, the university computers don't have a microphone.
+        * it's possible to arrange an event for students to go some specific places with computers that have microphone
+    * current workaround is to just use the uploading API. 
 
 ## Admin front end dev list
 

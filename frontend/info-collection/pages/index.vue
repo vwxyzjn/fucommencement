@@ -13,14 +13,14 @@
                 v-text-field(label="Furman ID" v-model="furmanID" required)
               
                 v-dialog(persistent v-model="anticipatedCompletionDateModal" lazy full-width)
-                  v-text-field(slot="activator", label="Please select a date", v-model="anticipatedCompletionDate", readonly)
+                  v-text-field(slot="activator", label="Please select a date", v-model="anticipatedCompletionDate", readonly, required)
                   v-date-picker(v-model="anticipatedCompletionDate", scrollable dark)
                     template(scope="{ save, cancel }")
                       v-card-actions
-                        v-btn( primary @click.native="cancel()") Cancel
-                        v-btn( primary @click.native="save()") Save
+                        v-btn.green--text.darken-1( flat @click.native="cancel()") Cancel
+                        v-btn.green--text.darken-1( flat @click.native="save()") Save
                 
-                v-select(:items="degreeExpectedOptions", v-model="degreeExpected", label="Select the degree expected" dark, item-value="text")
+                v-select(:items="degreeExpectedOptions", v-model="degreeExpected", label="Select the degree expected" dark, item-value="text", required)
                 v-text-field(label="Major(s)" v-model="majors" required)
                 v-text-field(label="Interdisciplinary Minor(s) " v-model="interdisciplinaryMinor" required)
                 v-text-field(label="Diploma First Name" v-model="diplomafirstName" required)
@@ -43,8 +43,33 @@
                 v-text-field(label="Post-Grad Postal Code" v-model="postGradPostalCode" required)
                 v-text-field(label="Post-Grad Telephone" v-model="postGradTelephone" required)
                 v-text-field(label="Post-Grad Email" v-model="postGradEmail" required)
+                v-dialog(v-model="namePronunciationModal" lazy full-width)
+                  v-text-field(slot="activator", label="(Optional) Upload Name Pronunciation", :value="namePronunciation ? 'Name Pronunciation uploaded' : ''", readonly)
+                  v-card
+                    v-card-title
+                      .headline Please upload your Name Pronunciation
+                    v-card-text
+                      p you can either upload a video or sound file
+                      
+                    v-card-actions
+                      v-spacer
+                      upload-button(title="Upload Profile Picture" :selectedCallback="namePronunciationUpload").ml-0
+
+                v-dialog(v-model="profilePictureModal" lazy full-width)
+                  v-text-field(slot="activator", label="Please Upload Profile Picture", :value="profilePicture ? 'Profile Picture uploaded': '' ", readonly, required)
+                  v-card
+                    v-card-title
+                      .headline Please upload your Name Pronunciation
+                    v-card-text
+                      p you can either upload a video or sound file
+
+                    v-card-actions
+                      v-spacer
+                      upload-button(title="Upload Profile Picture" :selectedCallback="profilePictureUpload").ml-0
+
                 v-select(:items="intentConfirmOptions", v-model="intentConfirm", label="Intent Confirm" dark, item-value="text")
 
+          
 
         v-card-actions
           v-spacer
@@ -54,6 +79,7 @@
 
 <script>
 import mobileCheck from '@/plugins/mobileCheck'
+import UploadButton from '@/components/UploadButton'
 
 export default {
   data () {
@@ -84,8 +110,25 @@ export default {
       postGradTelephone: '',
       postGradEmail: '',
       intentConfirmOptions: ['Y', 'N'],
-      intentConfirm: ''
+      intentConfirm: '',
+      namePronunciation: '',
+      namePronunciationModal: false,
+      profilePicture: '',
+      profilePictureModal: false
     }
+  },
+  methods: {
+    namePronunciationUpload (file) {
+      this.namePronunciation = file
+      this.namePronunciationModal = false
+    },
+    profilePictureUpload (file) {
+      this.profilePicture = file
+      this.profilePictureModal = false
+    }
+  },
+  components: {
+    UploadButton
   },
   created () {
     if (process.browser) {
