@@ -6,7 +6,7 @@
           span.headline.my-4.ml-4 Please fill in the following form
                 
         v-card-text
-          v-layout(row wrap)
+          v-layout(row wrap justify-content-center)
             v-flex(xs12 sm6).px-3
               v-form
                 v-text-field(label="Name" v-model="name", required)
@@ -44,6 +44,8 @@
                 v-text-field(label="Post-Grad Telephone" v-model="postGradTelephone" required)
                 v-text-field(label="Post-Grad Email" v-model="postGradEmail" required)
                 v-select(:items="intentConfirmOptions", v-model="intentConfirm", label="Intent Confirm" dark, item-value="text")
+
+
         v-card-actions
           v-spacer
           v-btn(primary nuxt to="/inspire") Submit
@@ -51,6 +53,8 @@
 </template>
 
 <script>
+import mobileCheck from '@/plugins/mobileCheck'
+
 export default {
   data () {
     return {
@@ -81,6 +85,11 @@ export default {
       postGradEmail: '',
       intentConfirmOptions: ['Y', 'N'],
       intentConfirm: ''
+    }
+  },
+  created () {
+    if (process.browser) {
+      console.log(mobileCheck())
     }
   }
 }
