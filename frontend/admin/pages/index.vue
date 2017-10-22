@@ -1,30 +1,43 @@
 <template>
-  <v-layout column justify-center align-center>
-    <v-flex xs12 sm8 md6>
-      <div class="text-xs-center">
-        <img src="/v.png" alt="Vuetify.js" class="mb-5" />
-      </div>
+  <v-layout row wrap>
+    <v-flex xs12 class="px-3 py-2">
+      <v-text-field
+        name="input-1"
+        label="Search student by name or furman ID"
+        id="testing"
+        prepend-icon="search"
+        v-model="searchStore.query"
+      ></v-text-field>
+    </v-flex>
+    <v-flex xs12 sm6 v-for="item in searchStore.results" :key="item.objectID" class="px-3 py-2">
       <v-card>
-        <v-card-title class="headline">Welcome to the Vuetify + Nuxt.js template</v-card-title>
-        <v-card-text>
-          <p>Vuetify is a progressive Material Design component framework for Vue.js. It was designed to empower developers to create amazing applications.</p>
-          <p>For more information on Vuetify, check out the <a href="https://vuetifyjs.com" target="_blank">documentation</a>.</p>
-          <p>If you have questions, please join the official <a href="https://chat.vuetifyjs.com/" target="_blank" title="chat">discord</a>.</p>
-          <p>Find a bug? Report it on the github <a href="https://github.com/vuetifyjs/vuetify/issues" target="_blank" title="contribute">issue board</a>.</p>
-          <p>Thank you for developing with Vuetify and I look forward to bringing more exciting features in the future.</p>
-          <div class="text-xs-right">
-            <em><small>&mdash; John Leider</small></em>
+        <v-card-media :src="item.image" height="200px">
+        </v-card-media>
+        <v-card-title primary-title>
+          <div>
+            <h3 class="headline mb-0">{{ item.name }}</h3>
+            <div>{{ item.shortDescription }}</div>
           </div>
-          <hr class="my-3">
-          <a href="https://nuxtjs.org/" target="_blank">Nuxt Documentation</a>
-          <br>
-          <a href="https://github.com/nuxt/nuxt.js" target="_blank">Nuxt GitHub</a>
-        </v-card-text>
+        </v-card-title>
         <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn color="primary" flat nuxt to="/inspire">Continue</v-btn>
+          <v-btn flat color="orange">Share</v-btn>
+          <v-btn flat color="orange">Explore</v-btn>
         </v-card-actions>
       </v-card>
     </v-flex>
   </v-layout>
 </template>
+
+<script>
+import { Component } from 'vue-instantsearch'
+
+export default {
+  mixins: [Component],
+  data () {
+    return {
+      searchString: ''
+    }
+  }
+}
+</script>
+
