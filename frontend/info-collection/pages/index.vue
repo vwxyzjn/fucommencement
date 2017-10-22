@@ -131,6 +131,7 @@ export default {
     submitForm () {
       let data = new FormData()
       data.append('name', this.name)
+      data.append('furmanID', this.furmanID)
       data.append('anticipatedCompletionDate', this.anticipatedCompletionDate)
       data.append('degreeExpected', this.degreeExpected)
       data.append('majors', this.majors)

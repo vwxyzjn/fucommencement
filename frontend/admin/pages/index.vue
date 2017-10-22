@@ -11,12 +11,12 @@
     </v-flex>
     <v-flex xs12 sm6 v-for="item in searchStore.results" :key="item.objectID" class="px-3 py-2">
       <v-card>
-        <v-card-media :src="item.image" height="200px">
+        <v-card-media :src="encodeURI('http://localhost:8080'+item.profilePicturePath)" height="200px">
         </v-card-media>
         <v-card-title primary-title>
           <div>
             <h3 class="headline mb-0">{{ item.name }}</h3>
-            <div>{{ item.shortDescription }}</div>
+            <div>Furman ID: {{ item.furmanID }}</div>
           </div>
         </v-card-title>
         <v-card-actions>
