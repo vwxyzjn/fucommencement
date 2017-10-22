@@ -1,3 +1,4 @@
+
 module.exports = {
   /*
   ** Headers of the page
@@ -19,17 +20,19 @@ module.exports = {
     '~/assets/style/app.styl'
   ],
   /*
-  ** Customize the progress-bar color
+  ** Customize the progress bar color
   */
   loading: { color: '#3B8070' },
   /*
   ** Build configuration
   */
   build: {
-    vendor: ['vuetify'],
+    vendor: [
+      '~/plugins/vuetify.js'
+    ],
     extractCSS: true,
     /*
-    ** Run ESLINT on save
+    ** Run ESLint on save
     */
     extend (config, ctx) {
       if (ctx.dev && ctx.isClient) {

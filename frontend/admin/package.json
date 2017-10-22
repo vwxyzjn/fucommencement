@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Nuxt.js + Vuetify.js project",
   "author": "Costa Huang <costa.huang@outlook.com>",
+  "private": true,
   "scripts": {
     "dev": "nuxt",
     "build": "nuxt build",
@@ -10,8 +11,8 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
-    "nuxt": "^1.0.0-rc6",
-    "vuetify": "^0.15.7"
+    "nuxt": "^1.0.0-rc11",
+    "vuetify": "^0.16.1"
   },
   "devDependencies": {
     "babel-eslint": "^7.2.3",
