@@ -73,13 +73,15 @@
 
         v-card-actions
           v-spacer
-          v-btn(primary nuxt to="/inspire") Submit
+          v-btn(primary @click="submitForm") Submit
 
 </template>
 
 <script>
 import mobileCheck from '@/plugins/mobileCheck'
 import UploadButton from '@/components/UploadButton'
+import axios from 'axios'
+axios.defaults.baseURL = 'http://localhost:8080'
 
 export default {
   data () {
@@ -125,6 +127,27 @@ export default {
     profilePictureUpload (file) {
       this.profilePicture = file
       this.profilePictureModal = false
+    },
+    submitForm () {
+      let data = new FormData()
+      data.append('namePronunciation', this.namePronunciation)
+      data.append('diplomafirstName', 'fdsfads')
+      data.append('profilePicture', this.profilePicture)
+      data.append('furmanID', '0991601')
+      data.append('name', this.name)
+
+      let xhr = new XMLHttpRequest()
+
+      xhr.addEventListener('readystatechange', function () {
+        if (this.readyState === 4) {
+          console.log(this.responseText)
+          alert('The submission is successful. Thank you!')
+        }
+      })
+
+      xhr.open('POST', 'http://localhost:8080/commencementPOST')
+      console.log(xhr)
+      xhr.send(data)
     }
   },
   components: {
