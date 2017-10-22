@@ -23,9 +23,9 @@
                 v-select(:items="degreeExpectedOptions", v-model="degreeExpected", label="Select the degree expected" dark, item-value="text", required)
                 v-text-field(label="Major(s)" v-model="majors" required)
                 v-text-field(label="Interdisciplinary Minor(s) " v-model="interdisciplinaryMinor" required)
-                v-text-field(label="Diploma First Name" v-model="diplomafirstName" required)
-                v-text-field(label="Diploma Middle Name" v-model="diplomamiddleName" required)
-                v-text-field(label="Diploma Last Name" v-model="diplomalastName" required)
+                v-text-field(label="Diploma First Name" v-model="diplomaFirstName" required)
+                v-text-field(label="Diploma Middle Name" v-model="diplomaMiddleName" required)
+                v-text-field(label="Diploma Last Name" v-model="diplomaLastName" required)
                 v-text-field(label="Hometown and State" v-model="hometownAndState" required)
                 v-text-field(label="Pronounce First Name" v-model="pronounceFirstName" required)
                 v-text-field(label="Pronounce Middle Name" v-model="pronounceMiddleName" required)
@@ -94,9 +94,9 @@ export default {
       degreeExpectedOptions: ['BA', 'BLA', 'BM', 'BS', 'MA', 'MS', 'EDS', 'PBC'],
       majors: '',
       interdisciplinaryMinor: '',
-      diplomafirstName: '',
-      diplomamiddleName: '',
-      diplomalastName: '',
+      diplomaFirstName: '',
+      diplomaMiddleName: '',
+      diplomaLastName: '',
       hometownAndState: '',
       pronounceFirstName: '',
       pronounceMiddleName: '',
@@ -131,7 +131,7 @@ export default {
     submitForm () {
       let data = new FormData()
       data.append('namePronunciation', this.namePronunciation)
-      data.append('diplomafirstName', 'fdsfads')
+      data.append('diplomaFirstName', 'fdsfads')
       data.append('profilePicture', this.profilePicture)
       data.append('furmanID', '0991601')
       data.append('name', this.name)
