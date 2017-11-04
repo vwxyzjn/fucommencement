@@ -17,9 +17,10 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
+    "axios": "^0.17.0",
     "nuxt": "^1.0.0-rc11",
     "vue-instantsearch": "^1.2.2",
-    "vuetify": "^0.16.1"
+    "vuetify": "^0.16.9"
   },
   "devDependencies": {
     "babel-eslint": "^7.2.3",

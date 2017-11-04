@@ -11,6 +11,7 @@
       :clipped="clipped"
       v-model="drawer"
       app
+      enable-resize-watcher
     >
       <v-list>
         <v-list-tile 
