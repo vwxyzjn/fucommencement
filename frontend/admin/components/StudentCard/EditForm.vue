@@ -43,51 +43,31 @@ v-dialog(v-model="dialog" persistent max-width="1000px" scrollable)
             v-text-field(label="Post-Grad Postal Code" v-model="postGradPostalCode" required)
             v-text-field(label="Post-Grad Telephone" v-model="postGradTelephone" required)
             v-text-field(label="Post-Grad Email" v-model="postGradEmail" required)
-            v-dialog(v-model="namePronunciationModal" lazy full-width)
-              v-text-field(slot="activator", label="(Optional) Upload Name Pronunciation", :value="namePronunciation ? 'Name Pronunciation uploaded' : ''", readonly)
-              v-card
-                v-card-title
-                  .headline Please upload your Name Pronunciation
-                v-card-text
-                  p you can either upload a video or sound file
-                  
-                v-card-actions
-                  v-spacer
-                  upload-button(title="Upload Profile Picture" :selectedCallback="namePronunciationUpload").ml-0
-
-            v-dialog(v-model="profilePictureModal" lazy full-width)
-              v-text-field(slot="activator", label="Please Upload Profile Picture", :value="profilePicture ? 'Profile Picture uploaded': '' ", readonly, required)
-              v-card
-                v-card-title
-                  .headline Please upload your Name Pronunciation
-                v-card-text
-                  p you can either upload a video or sound file
-
-                v-card-actions
-                  v-spacer
-                  upload-button(title="Upload Profile Picture" :selectedCallback="profilePictureUpload").ml-0
-
             v-select(:items="intentConfirmOptions", v-model="intentConfirm", label="Intent Confirm" dark, item-value="text")
+            v-select(:items="honorOptions", v-model="honor", label="Select the honor" dark, required)
 
       
     v-divider
     v-card-actions
       v-spacer
       v-btn(color="orange" flat  @click="dialog = false") close
-      v-btn(color="error" flat @click="dialog = false") Update
+      v-btn(color="error" flat @click="dialog = false;submitForm()") Update
 
 </template>
 
 <script>
 import UploadButton from '@/components/UploadButton'
+import { Component } from 'vue-instantsearch'
 
 export default {
   props: {
     studentData: Object
   },
+  mixins: [Component],
   data () {
     return {
       dialog: false,
+      objectID: '',
       name: '',
       furmanID: '',
       anticipatedCompletionDate: null,
@@ -115,23 +95,17 @@ export default {
       postGradEmail: '',
       intentConfirmOptions: ['Y', 'N'],
       intentConfirm: '',
-      namePronunciation: '',
-      namePronunciationModal: false,
-      profilePicture: '',
-      profilePictureModal: false
+      namePronunciationPath: '',
+      profilePicturePath: '',
+      honor: '',
+      honorOptions: ['Summa Cum Laude', 'Magna Cum Laude', 'Cum laude']
     }
   },
   methods: {
-    namePronunciationUpload (file) {
-      this.namePronunciation = file
-      this.namePronunciationModal = false
-    },
-    profilePictureUpload (file) {
-      this.profilePicture = file
-      this.profilePictureModal = false
-    },
     submitForm () {
+      let self = this
       let data = new FormData()
+      data.append('objectID', this.objectID)
       data.append('name', this.name)
       data.append('furmanID', this.furmanID)
       data.append('anticipatedCompletionDate', this.anticipatedCompletionDate)
@@ -156,8 +130,9 @@ export default {
       data.append('postGradTelephone', this.postGradTelephone)
       data.append('postGradEmail', this.postGradEmail)
       data.append('intentConfirm', this.intentConfirm)
-      data.append('namePronunciation', this.namePronunciation)
-      data.append('profilePicture', this.profilePicture)
+      data.append('namePronunciationPath', this.namePronunciationPath)
+      data.append('profilePicturePath', this.profilePicturePath)
+      data.append('honor', this.honor)
 
       let xhr = new XMLHttpRequest()
 
@@ -165,10 +140,14 @@ export default {
         if (this.readyState === 4) {
           console.log(this.responseText)
           alert('The submission is successful. Thank you!')
+          setTimeout(() => {
+            self.searchStore.clearCache()
+            self.searchStore.refresh()
+          }, 2000)
         }
       })
 
-      xhr.open('POST', 'http://localhost:8080/commencementPOST')
+      xhr.open('POST', 'http://localhost:8080/updateEntryPOST')
       console.log(xhr)
       xhr.send(data)
     }
@@ -177,6 +156,7 @@ export default {
     UploadButton
   },
   created () {
+    this.objectID = this.studentData.objectID
     this.name = this.studentData.name
     this.furmanID = this.studentData.furmanID
     this.anticipatedCompletionDate = this.studentData.anticipatedCompletionDate
@@ -202,7 +182,9 @@ export default {
     this.postGradTelephone = this.studentData.postGradTelephone
     this.postGradEmail = this.studentData.postGradEmail
     this.intentConfirm = this.studentData.intentConfirm
-    this.postGradState = this.studentData.postGradState
+    this.namePronunciationPath = this.studentData.namePronunciationPath
+    this.profilePicturePath = this.studentData.profilePicturePath
+    this.honor = this.studentData.honor
   }
 }
 </script>

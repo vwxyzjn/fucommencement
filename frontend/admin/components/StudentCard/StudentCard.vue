@@ -7,12 +7,14 @@
         <h3 class="headline mb-0">{{ studentData.name }}</h3>
         <v-divider class="my-3"></v-divider>
         <div>Furman ID: {{ studentData.furmanID }}</div>
-        <div>{{ studentData.namePronunciationPath }}</div>
+        <br>
         <div>
-          <audio controls>
+          <div>Name Pronounciation:  </div>
+          <audio controls="controls">
             <source :src="encodeURI('http://localhost:8080'+studentData.namePronunciationPath)" type="audio/mpeg">
           </audio>
         </div>
+        <div>Honor: {{ studentData.honor }}</div>
       </div>
     </v-card-text>
     <v-card-actions>
