@@ -10,32 +10,24 @@
       ></v-text-field>
     </v-flex>
     <v-flex xs12 sm6 v-for="item in searchStore.results" :key="item.objectID" class="px-3 py-2">
-      <v-card>
-        <v-card-media :src="encodeURI('http://localhost:8080'+item.profilePicturePath)" height="200px">
-        </v-card-media>
-        <v-card-title primary-title>
-          <div>
-            <h3 class="headline mb-0">{{ item.name }}</h3>
-            <div>Furman ID: {{ item.furmanID }}</div>
-          </div>
-        </v-card-title>
-        <v-card-actions>
-          <v-btn flat color="orange">Share</v-btn>
-          <v-btn flat color="orange">Explore</v-btn>
-        </v-card-actions>
-      </v-card>
+      <student-card :studentData="item"></student-card>
     </v-flex>
   </v-layout>
 </template>
 
 <script>
 import { Component } from 'vue-instantsearch'
+import StudentCard from '@/components/StudentCard/StudentCard'
+import axios from 'axios'
+axios.defaults.baseURL = 'http://localhost:8080'
 
 export default {
   mixins: [Component],
+  components: {
+    StudentCard
+  },
   data () {
     return {
-      searchString: ''
     }
   }
 }
