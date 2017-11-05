@@ -19,6 +19,7 @@
 * (finished) acquire **photos** of students
 * acquire **sound** file of student pronouncing name exactly as intended for the event 
     * is it possible to make this requirement optional?
+        * **HARD** requirements
     * cross-platform solution for uploading audio files is difficult
         * IOS and andriod, for example, doesn't support related API to various degree
             * http://caniuse.com/#feat=mediarecorder
