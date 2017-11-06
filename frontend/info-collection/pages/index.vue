@@ -80,8 +80,6 @@
 <script>
 import mobileCheck from '@/plugins/mobileCheck'
 import UploadButton from '@/components/UploadButton'
-import axios from 'axios'
-axios.defaults.baseURL = 'http://localhost:8080'
 
 export default {
   data () {
@@ -166,7 +164,7 @@ export default {
         }
       })
 
-      xhr.open('POST', 'http://localhost:8080/commencementPOST')
+      xhr.open('POST', this.$store.state.baseURL + '/commencementPOST')
       console.log(xhr)
       xhr.send(data)
     }

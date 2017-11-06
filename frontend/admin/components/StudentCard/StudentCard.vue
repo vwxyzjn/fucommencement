@@ -1,6 +1,6 @@
 <template>
   <v-card>
-    <v-card-media :src="encodeURI('http://localhost:8080'+studentData.profilePicturePath)" height="200px">
+    <v-card-media :src="encodeURI($store.state.baseURL+studentData.profilePicturePath)" height="200px">
     </v-card-media>
     <v-card-text >
       <div>
@@ -11,7 +11,7 @@
         <div>
           <div>Name Pronounciation:  </div>
           <audio controls="controls">
-            <source :src="encodeURI('http://localhost:8080'+studentData.namePronunciationPath)" type="audio/mpeg">
+            <source :src="encodeURI($store.state.baseURL+studentData.namePronunciationPath)" type="audio/mpeg">
           </audio>
         </div>
         <div>Honor: {{ studentData.honor }}</div>

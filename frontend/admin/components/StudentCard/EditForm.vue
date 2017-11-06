@@ -147,7 +147,7 @@ export default {
         }
       })
 
-      xhr.open('POST', 'http://localhost:8080/updateEntryPOST')
+      xhr.open('POST', this.$store.state.baseURL + '/updateEntryPOST')
       console.log(xhr)
       xhr.send(data)
     }

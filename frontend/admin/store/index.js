@@ -1,5 +1,6 @@
 export const state = () => ({
-  sidebar: false
+  sidebar: false,
+  baseURL: 'http://dev.streettraffic.org:3000'
 })
 
 export const mutations = {
