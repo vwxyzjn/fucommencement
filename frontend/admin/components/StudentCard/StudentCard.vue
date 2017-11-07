@@ -11,7 +11,7 @@
         <div>
           <div>Name Pronounciation:  </div>
           <audio controls="controls">
-            <source :src="encodeURI($store.state.baseURL+studentData.namePronunciationPath)" type="audio/mpeg">
+            <source :src="encodeURI($store.state.baseURL+studentData.namePronunciationPath)" type="audio/mp4">
           </audio>
         </div>
         <div>Honor: {{ studentData.honor }}</div>
