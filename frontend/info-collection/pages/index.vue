@@ -9,65 +9,65 @@
           v-layout(row wrap justify-content-center)
             v-flex(xs12 sm6).px-3
               v-form
-                v-text-field(label="Name" v-model="name", required)
-                v-text-field(label="Furman ID" v-model="furmanID" required)
+                v-text-field(label="Name" v-model="studentData.name", required)
+                v-text-field(label="Furman ID" v-model="studentData.furmanID" required)
               
                 v-dialog(persistent v-model="anticipatedCompletionDateModal" lazy full-width)
-                  v-text-field(slot="activator", label="Please select a date", v-model="anticipatedCompletionDate", readonly, required)
-                  v-date-picker(v-model="anticipatedCompletionDate", scrollable dark)
+                  v-text-field(slot="activator", label="Please select a date", v-model="studentData.anticipatedCompletionDate", readonly, required)
+                  v-date-picker(v-model="studentData.anticipatedCompletionDate", scrollable dark)
                     template(scope="{ save, cancel }")
                       v-card-actions
                         v-btn.green--text.darken-1( flat @click.native="cancel()") Cancel
                         v-btn.green--text.darken-1( flat @click.native="save()") Save
                 
-                v-select(:items="degreeExpectedOptions", v-model="degreeExpected", label="Select the degree expected" dark, item-value="text", required)
-                v-text-field(label="Major(s)" v-model="majors" required)
-                v-text-field(label="Interdisciplinary Minor(s) " v-model="interdisciplinaryMinor" required)
-                v-text-field(label="Diploma First Name" v-model="diplomaFirstName" required)
-                v-text-field(label="Diploma Middle Name" v-model="diplomaMiddleName" required)
-                v-text-field(label="Diploma Last Name" v-model="diplomaLastName" required)
-                v-text-field(label="Hometown and State" v-model="hometownAndState" required)
-                v-text-field(label="Pronounce First Name" v-model="pronounceFirstName" required)
-                v-text-field(label="Pronounce Middle Name" v-model="pronounceMiddleName" required)
-                v-text-field(label="Pronounce Last Name" v-model="pronounceLastName" required)
+                v-select(:items="degreeExpectedOptions", v-model="studentData.degreeExpected", label="Select the degree expected" dark, item-value="text", required)
+                v-text-field(label="Major(s)" v-model="studentData.majors" required)
+                v-text-field(label="Interdisciplinary Minor(s) " v-model="studentData.interdisciplinaryMinor" required)
+                v-text-field(label="Diploma First Name" v-model="studentData.diplomaFirstName" required)
+                v-text-field(label="Diploma Middle Name" v-model="studentData.diplomaMiddleName" required)
+                v-text-field(label="Diploma Last Name" v-model="studentData.diplomaLastName" required)
+                v-text-field(label="Hometown and State" v-model="studentData.hometownAndState" required)
+                v-text-field(label="Pronounce First Name" v-model="studentData.pronounceFirstName" required)
+                v-text-field(label="Pronounce Middle Name" v-model="studentData.pronounceMiddleName" required)
+                v-text-field(label="Pronounce Last Name" v-model="studentData.pronounceLastName" required)
             
             v-flex(xs12 sm6).px-3
               v-form
-                v-text-field(label="Rhyme First Name" v-model="rhymeFirstName" required)
-                v-text-field(label="Rhyme Middle Name" v-model="rhymeMiddleName" required)
-                v-text-field(label="Rhyme Last Name" v-model="rhymeLastName" required)
-                v-text-field(label="Post-Grad Address" v-model="postGradAddress" required)
-                v-text-field(label="Post-Grad Address Two" v-model="postGradAddressTwo" required)
-                v-text-field(label="Post-Grad City" v-model="postGradCity" required)
-                v-text-field(label="Post-Grad State" v-model="postGradState" required)
-                v-text-field(label="Post-Grad Postal Code" v-model="postGradPostalCode" required)
-                v-text-field(label="Post-Grad Telephone" v-model="postGradTelephone" required)
-                v-text-field(label="Post-Grad Email" v-model="postGradEmail" required)
+                v-text-field(label="Rhyme First Name" v-model="studentData.rhymeFirstName" required)
+                v-text-field(label="Rhyme Middle Name" v-model="studentData.rhymeMiddleName" required)
+                v-text-field(label="Rhyme Last Name" v-model="studentData.rhymeLastName" required)
+                v-text-field(label="Post-Grad Address" v-model="studentData.postGradAddress" required)
+                v-text-field(label="Post-Grad Address Two" v-model="studentData.postGradAddressTwo" required)
+                v-text-field(label="Post-Grad City" v-model="studentData.postGradCity" required)
+                v-text-field(label="Post-Grad State" v-model="studentData.postGradState" required)
+                v-text-field(label="Post-Grad Postal Code" v-model="studentData.postGradPostalCode" required)
+                v-text-field(label="Post-Grad Telephone" v-model="studentData.postGradTelephone" required)
+                v-text-field(label="Post-Grad Email" v-model="studentData.postGradEmail" required)
                 v-dialog(v-model="namePronunciationModal" lazy full-width)
-                  v-text-field(slot="activator", label="(Optional) Upload Name Pronunciation", :value="namePronunciation ? 'Name Pronunciation uploaded' : ''", readonly)
+                  v-text-field(slot="activator", label="Upload Name Pronunciation", :value="studentData.namePronunciation ? 'Name Pronunciation uploaded' : ''", readonly)
                   v-card
                     v-card-title
-                      .headline Please upload your Name Pronunciation
+                      .headline Please upload your name pronunciation
                     v-card-text
                       p you can either upload a video or sound file
                       
                     v-card-actions
                       v-spacer
-                      upload-button(title="Upload Profile Picture" :selectedCallback="namePronunciationUpload").ml-0
+                      upload-button(title="Upload Name Pronunciation" :selectedCallback="namePronunciationUpload").ml-0
 
                 v-dialog(v-model="profilePictureModal" lazy full-width)
-                  v-text-field(slot="activator", label="Please Upload Profile Picture", :value="profilePicture ? 'Profile Picture uploaded': '' ", readonly, required)
+                  v-text-field(slot="activator", label="Please Upload Profile Picture", :value="studentData.profilePicture ? 'Profile Picture uploaded': '' ", readonly, required)
                   v-card
                     v-card-title
-                      .headline Please upload your Name Pronunciation
+                      .headline Please upload your profile picture
                     v-card-text
-                      p you can either upload a video or sound file
+                      p you may upload JPEG, PNG, and JPG.
 
                     v-card-actions
                       v-spacer
                       upload-button(title="Upload Profile Picture" :selectedCallback="profilePictureUpload").ml-0
 
-                v-select(:items="intentConfirmOptions", v-model="intentConfirm", label="Intent Confirm" dark, item-value="text")
+                v-select(:items="intentConfirmOptions", v-model="studentData.intentConfirm", label="Intent Confirm" dark, item-value="text")
 
           
 
@@ -84,83 +84,60 @@ import UploadButton from '@/components/UploadButton'
 export default {
   data () {
     return {
-      name: '',
-      furmanID: '',
-      anticipatedCompletionDate: null,
+      studentData: {
+        name: '',
+        furmanID: '',
+        anticipatedCompletionDate: null,
+        degreeExpected: '',
+        majors: '',
+        interdisciplinaryMinor: '',
+        diplomaFirstName: '',
+        diplomaMiddleName: '',
+        diplomaLastName: '',
+        hometownAndState: '',
+        pronounceFirstName: '',
+        pronounceMiddleName: '',
+        pronounceLastName: '',
+        rhymeFirstName: '',
+        rhymeMiddleName: '',
+        rhymeLastName: '',
+        postGradAddress: '',
+        postGradAddressTwo: '',
+        postGradCity: '',
+        postGradState: '',
+        postGradPostalCode: '',
+        postGradTelephone: '',
+        postGradEmail: '',
+        intentConfirm: '',
+        namePronunciation: '',
+        profilePicture: ''
+      },
       anticipatedCompletionDateModal: false,
-      degreeExpected: '',
       degreeExpectedOptions: ['BA', 'BLA', 'BM', 'BS', 'MA', 'MS', 'EDS', 'PBC'],
-      majors: '',
-      interdisciplinaryMinor: '',
-      diplomaFirstName: '',
-      diplomaMiddleName: '',
-      diplomaLastName: '',
-      hometownAndState: '',
-      pronounceFirstName: '',
-      pronounceMiddleName: '',
-      pronounceLastName: '',
-      rhymeFirstName: '',
-      rhymeMiddleName: '',
-      rhymeLastName: '',
-      postGradAddress: '',
-      postGradAddressTwo: '',
-      postGradCity: '',
-      postGradState: '',
-      postGradPostalCode: '',
-      postGradTelephone: '',
-      postGradEmail: '',
       intentConfirmOptions: ['Y', 'N'],
-      intentConfirm: '',
-      namePronunciation: '',
       namePronunciationModal: false,
-      profilePicture: '',
       profilePictureModal: false
     }
   },
   methods: {
     namePronunciationUpload (file) {
-      this.namePronunciation = file
+      this.studentData.namePronunciation = file
       this.namePronunciationModal = false
     },
     profilePictureUpload (file) {
-      this.profilePicture = file
+      this.studentData.profilePicture = file
       this.profilePictureModal = false
     },
     submitForm () {
       let data = new FormData()
-      data.append('name', this.name)
-      data.append('furmanID', this.furmanID)
-      data.append('anticipatedCompletionDate', this.anticipatedCompletionDate)
-      data.append('degreeExpected', this.degreeExpected)
-      data.append('majors', this.majors)
-      data.append('interdisciplinaryMinor', this.interdisciplinaryMinor)
-      data.append('diplomaFirstName', this.diplomaFirstName)
-      data.append('diplomaMiddleName', this.diplomaMiddleName)
-      data.append('diplomaLastName', this.diplomaLastName)
-      data.append('hometownAndState', this.hometownAndState)
-      data.append('pronounceFirstName', this.pronounceFirstName)
-      data.append('pronounceMiddleName', this.pronounceMiddleName)
-      data.append('pronounceLastName', this.pronounceLastName)
-      data.append('rhymeFirstName', this.rhymeFirstName)
-      data.append('rhymeMiddleName', this.rhymeMiddleName)
-      data.append('rhymeLastName', this.rhymeLastName)
-      data.append('postGradAddress', this.postGradAddress)
-      data.append('postGradAddressTwo', this.postGradAddressTwo)
-      data.append('postGradCity', this.postGradCity)
-      data.append('postGradState', this.postGradState)
-      data.append('postGradPostalCode', this.postGradPostalCode)
-      data.append('postGradTelephone', this.postGradTelephone)
-      data.append('postGradEmail', this.postGradEmail)
-      data.append('intentConfirm', this.intentConfirm)
-      data.append('namePronunciation', this.namePronunciation)
-      data.append('profilePicture', this.profilePicture)
-
+      Object.keys(this.studentData).forEach(key => {
+        data.append(key, this.studentData[key])
+      })
       let xhr = new XMLHttpRequest()
 
       xhr.addEventListener('readystatechange', function () {
         if (this.readyState === 4) {
           console.log(this.responseText)
-          alert('The submission is successful. Thank you!')
         }
       })
 
