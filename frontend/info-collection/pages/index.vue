@@ -129,6 +129,7 @@ export default {
       this.profilePictureModal = false
     },
     submitForm () {
+      this.furmanID = parseInt(this.furmanID)
       let data = new FormData()
       Object.keys(this.studentData).forEach(key => {
         data.append(key, this.studentData[key])
