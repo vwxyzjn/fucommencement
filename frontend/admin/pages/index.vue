@@ -19,7 +19,6 @@
 import { Component } from 'vue-instantsearch'
 import StudentCard from '@/components/StudentCard/StudentCard'
 import axios from 'axios'
-axios.defaults.baseURL = 'http://localhost:8080'
 
 export default {
   mixins: [Component],
@@ -29,6 +28,9 @@ export default {
   data () {
     return {
     }
+  },
+  created () {
+    axios.defaults.baseURL = this.$store.state.baseURL
   }
 }
 </script>
