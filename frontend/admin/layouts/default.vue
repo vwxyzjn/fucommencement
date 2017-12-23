@@ -19,7 +19,7 @@
           :to="item.to"
           :key="i"
           v-for="(item, i) in items"
-          exact
+          :exact="item.exact"
         >
           <v-list-tile-action>
             <v-icon v-html="item.icon"></v-icon>
@@ -60,8 +60,8 @@ export default {
       drawer: true,
       fixed: false,
       items: [
-        { icon: 'apps', title: 'Recent Submission', to: '/' },
-        { icon: 'bubble_chart', title: 'Inspire', to: '/inspire' }
+        { icon: 'apps', title: 'Recent Submission', to: '/', exact: true },
+        { icon: 'bubble_chart', title: 'Event Use', to: '/event' }
       ],
       miniVariant: false,
       right: true,
