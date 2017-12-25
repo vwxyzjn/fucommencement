@@ -44,5 +44,8 @@ module.exports = {
         })
       }
     }
-  }
+  },
+  serverMiddleware: [
+    { path: '/event', handler: (req, res, next) => { res.spa = true; next() } }
+  ]
 }
