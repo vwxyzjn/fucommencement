@@ -16,6 +16,7 @@
             </audio>
           </div>
           <div>Honor: {{ studentData.honor }}</div>
+          <div>Diploma Last Name: {{ studentData.diplomaLastName }}</div>
         </div>
       </v-card-text>
       <v-card-actions>
