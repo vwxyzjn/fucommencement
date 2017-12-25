@@ -51,7 +51,9 @@
 <script>
 import Vue from 'vue'
 import InstantSearch from 'vue-instantsearch'
+import AsyncComputed from 'vue-async-computed'
 Vue.use(InstantSearch)
+Vue.use(AsyncComputed)
 
 export default {
   data () {

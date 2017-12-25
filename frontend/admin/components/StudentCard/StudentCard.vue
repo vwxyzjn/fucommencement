@@ -1,27 +1,29 @@
 <template>
-  <v-card>
-    <v-card-media :src="encodeURI($store.state.baseURL+studentData.profilePicturePath)" height="200px">
-    </v-card-media>
-    <v-card-text >
-      <div>
-        <h3 class="headline mb-0">{{ studentData.name }}</h3>
-        <v-divider class="my-3"></v-divider>
-        <div>Furman ID: {{ studentData.furmanID }}</div>
-        <br>
+  <div v-if="studentData">
+    <v-card>
+      <v-card-media :src="encodeURI($store.state.baseURL+studentData.profilePicturePath)" height="200px">
+      </v-card-media>
+      <v-card-text >
         <div>
-          <div>Name Pronounciation:  </div>
-          <audio controls="controls">
-            <source :src="encodeURI($store.state.baseURL+studentData.namePronunciationPath)" type="audio/mp4">
-          </audio>
+          <h3 class="headline mb-0">{{ studentData.name }}</h3>
+          <v-divider class="my-3"></v-divider>
+          <div>Furman ID: {{ studentData.furmanID }}</div>
+          <br>
+          <div>
+            <div>Name Pronounciation:  </div>
+            <audio controls="controls">
+              <source :src="encodeURI($store.state.baseURL+studentData.namePronunciationPath)" type="audio/mp4">
+            </audio>
+          </div>
+          <div>Honor: {{ studentData.honor }}</div>
         </div>
-        <div>Honor: {{ studentData.honor }}</div>
-      </div>
-    </v-card-text>
-    <v-card-actions>
-      <edit-form :studentData="studentData"></edit-form>
-      <v-btn flat color="error" @click="deleteEntry(studentData.objectID)">Delete</v-btn>
-    </v-card-actions>
-  </v-card>
+      </v-card-text>
+      <v-card-actions>
+        <edit-form :studentData="studentData"></edit-form>
+        <v-btn flat color="error" @click="deleteEntry(studentData.objectID)">Delete</v-btn>
+      </v-card-actions>
+    </v-card>
+  </div>
 </template>
 
 <script>

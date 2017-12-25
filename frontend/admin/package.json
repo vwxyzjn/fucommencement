@@ -17,9 +17,12 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
-    "axios": "^0.17.0",
+    "axios": "^0.17.1",
     "nuxt": "^1.0.0-rc11",
+    "vue-async-computed": "^3.3.1",
+    "vue-easy-slider": "^3.1.7",
     "vue-instantsearch": "^1.2.2",
+    "vue-tiny-slider": "^0.1.4",
     "vuetify": "^0.16.9"
   },
   "devDependencies": {
@@ -34,6 +37,7 @@
     "eslint-plugin-standard": "^3.0.1",
     "pug": "^2.0.0-rc.4",
     "stylus": "^0.54.5",
-    "stylus-loader": "^3.0.1"
+    "stylus-loader": "^3.0.1",
+    "vue-slick": "^1.1.12"
   }
 }
