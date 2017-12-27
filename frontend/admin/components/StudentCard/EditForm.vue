@@ -98,7 +98,7 @@ export default {
       namePronunciationPath: '',
       profilePicturePath: '',
       honor: '',
-      honorOptions: ['Summa Cum Laude', 'Magna Cum Laude', 'Cum laude', 'None']
+      honorOptions: ['None', 'Summa Cum Laude', 'Magna Cum Laude', 'Cum laude']
     }
   },
   methods: {
