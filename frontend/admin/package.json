@@ -18,10 +18,11 @@
   },
   "dependencies": {
     "axios": "^0.17.1",
+    "flickity": "^2.0.10",
     "install": "^0.10.2",
     "lodash": "^4.17.4",
     "npm": "^5.6.0",
-    "nuxt": "^1.0.0-rc11",
+    "nuxt": "^1.1.1",
     "vue-async-computed": "^3.3.1",
     "vue-flickity": "^1.0.9",
     "vue-instantsearch": "^1.2.2",
