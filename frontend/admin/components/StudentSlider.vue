@@ -20,7 +20,7 @@ export default {
   props: {
     numStudentCards: {
       type: Number,
-      default: 10
+      default: 3
     }
   },
   data () {
@@ -88,7 +88,7 @@ export default {
 
 <style scoped>
 .carousel-cell {
-  width: 100%;
+  width: 80%;
   margin-left: 4rem;
 }
 </style>

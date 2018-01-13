@@ -1,5 +1,5 @@
 <template>
-  <student-slider></student-slider>
+  <student-slider :numStudentCards="4"></student-slider>
 </template>
 
 <script>
