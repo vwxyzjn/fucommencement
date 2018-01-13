@@ -75,6 +75,8 @@ export default {
     }
   },
   mounted () {
+    // reposition at load to fix weird position bug
+    this.$refs.flickity.reposition()
     let self = this
     this.$refs.flickity.on('scroll', async () => {
       let settledIndex = self.$refs.flickity.selectedIndex()
