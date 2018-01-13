@@ -138,7 +138,12 @@ export default {
 
       xhr.addEventListener('readystatechange', function () {
         if (this.readyState === 4) {
-          console.log(this.responseText)
+          if (this.status === 200) {
+            alert('You have submitted the form successfully')
+          } else {
+            alert('System failed, try again later!')
+            console.log(this.responseText)
+          }
         }
       })
 
