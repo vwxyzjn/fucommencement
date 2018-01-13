@@ -27,6 +27,7 @@ rank: a   rank:  b  rank:  c
 |      |  |      |  |      |
 --------  --------  --------
 
+Good luck, have fun if you happen to be maintaining my code
 */
 
 import _ from 'lodash'
