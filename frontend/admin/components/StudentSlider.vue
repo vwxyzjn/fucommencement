@@ -10,6 +10,25 @@
 </template>
 
 <script>
+/* 
+I would like to speak to you about my construction about this componenet. Basically,
+the user will only see the ``View`` card as shown below. Whenever the user swipe the card,
+the component will use the code in ``mounted()`` to 
+  (1) find out which card to update by using ``mod(n,m)``
+  (2) update the ``rank`` for each card
+  (3) use ``entryByRankGET(n)`` to fetch the corresponding data
+
+card: 1   card:  2  card:  3
+index:0   index: 1  index: 2
+rank: a   rank:  b  rank:  c
+--------  --------  --------
+|      |  |      |  |      |
+|      |  | View |  |      |
+|      |  |      |  |      |
+--------  --------  --------
+
+*/
+
 import _ from 'lodash'
 import Flickity from 'vue-flickity'
 import StudentCard from '@/components/StudentCard/StudentCard'
