@@ -25,6 +25,16 @@
       </v-card-actions>
     </v-card>
   </div>
+  <div v-else>
+    <v-card>
+      <v-card-media height="200px" class="green">
+      </v-card-media>
+      <v-card-text >
+        Opps, there is nothing here <br>
+        Go back the last slide
+      </v-card-text>
+    </v-card>
+  </div>
 </template>
 
 <script>
