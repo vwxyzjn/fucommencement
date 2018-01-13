@@ -19,6 +19,7 @@
   "dependencies": {
     "axios": "^0.17.1",
     "install": "^0.10.2",
+    "lodash": "^4.17.4",
     "npm": "^5.6.0",
     "nuxt": "^1.0.0-rc11",
     "vue-async-computed": "^3.3.1",
