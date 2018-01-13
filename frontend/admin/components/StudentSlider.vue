@@ -32,7 +32,8 @@ export default {
       },
       ranks: _.range(this.numStudentCards - 1).concat([-1]), // I am sorry for this hack, but basically, you should start off with [0,1,2, ..., -1] so that if you swipe left, you will get a warning message.
       lastRank: 0,
-      studentDataCollection: new Array(this.numStudentCards)
+      studentDataCollection: new Array(this.numStudentCards),
+      currentIndex: 0
     }
   },
   components: {
@@ -55,11 +56,15 @@ export default {
   },
   mounted () {
     let self = this
-    this.$refs.flickity.on('settle', async () => {
+    this.$refs.flickity.on('scroll', async () => {
       let settledIndex = self.$refs.flickity.selectedIndex()
       let settledRank = self.ranks[settledIndex]
-      console.log('settledIndex' + settledIndex)
-      console.log('settledRank' + settledRank)
+      // don't call the api if the index hasn't changed
+      if (settledIndex === this.currentIndex) {
+        return
+      } else {
+        this.currentIndex = settledIndex
+      }
       // handle forward
       if (settledRank > self.lastRank) {
         let r = self.mod(settledIndex + 1, this.numStudentCards)
@@ -72,7 +77,6 @@ export default {
         Vue.set(this.studentDataCollection, r, await this.entryByRankGET(settledRank - 1))
         self.lastRank -= 1
       }
-      console.log(this.ranks)
     })
   },
   async created () {
