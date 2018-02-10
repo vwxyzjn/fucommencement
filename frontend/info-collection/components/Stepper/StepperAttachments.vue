@@ -1,7 +1,7 @@
 <template lang="pug">
   v-form
-    v-dialog(v-model="namePronunciationModal" lazy full-width)
-      v-text-field(slot="activator", label="Upload Name Pronunciation", :value="studentData.namePronunciation ? 'Name Pronunciation uploaded' : ''", readonly)
+    v-text-field(label="Upload Name Pronunciation", :value="studentData.namePronunciation ? 'Name Pronunciation uploaded' : ''", readonly,required, @click.native.stop="namePronunciationModal = true")
+    v-dialog(v-model="namePronunciationModal" lazy max-width="600")
       v-card
         v-card-title
           .headline Please upload your name pronunciation
@@ -12,8 +12,8 @@
           v-spacer
           upload-button(title="Upload Name Pronunciation" :selectedCallback="namePronunciationUpload").ml-0
 
-    v-dialog(v-model="profilePictureModal" lazy full-width)
-      v-text-field(slot="activator", label="Please Upload Profile Picture", :value="studentData.profilePicture ? 'Profile Picture uploaded': '' ", readonly, required)
+    v-text-field(label="Please Upload Profile Picture", :value="studentData.profilePicture ? 'Profile Picture uploaded': '' ", readonly, required, @click.native.stop="profilePictureModal = true")
+    v-dialog(v-model="profilePictureModal" lazy max-width="600")
       v-card
         v-card-title
           .headline Please upload your profile picture
