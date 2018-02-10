@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-stepper.mt-3(v-model='e1')
+  v-stepper.mt-3(v-model='e1').elevation-7
     v-stepper-header
       v-stepper-step(step='1', :complete='e1 > 1' editable) About You
       v-divider
