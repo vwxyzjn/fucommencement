@@ -20,6 +20,9 @@
         v-btn(color='primary', @click.native='e1 = 4') Continue
       v-stepper-content(step='4' editable)
         StepperSubmission(:studentData="studentData").mb-5
+        v-btn.white--text(:loading='uploaded', @click.native="submitForm", :disabled='uploaded', color='blue-grey') submit
+          v-icon(right, dark) cloud_upload
+
         v-btn(color='primary', @click.native='submitForm') Submit
 </template>
 
@@ -33,6 +36,7 @@ export default {
   data () {
     return {
       e1: 1,
+      uploaded: false,
       studentData: {
         name: '',
         furmanID: '',
