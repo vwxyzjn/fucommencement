@@ -5,7 +5,8 @@
         v-card-media.deep-purple.white--text
           span.headline.my-4.ml-4 Furman University Commencement Form
         v-card-text
-          v-layout(row wrap justify-content-center)
+          stepper
+          //- v-layout(row wrap justify-content-center)
             v-flex(xs12 sm6).px-3
               v-form
                 v-text-field(label="Name" v-model="studentData.name", required)
@@ -72,13 +73,14 @@
 
         v-card-actions
           v-spacer
-          v-btn(primary @click="submitForm") Submit
+          v-btn(color="primary" @click="submitForm") Submit
 
 </template>
 
 <script>
 import mobileCheck from '@/plugins/mobileCheck'
 import UploadButton from '@/components/UploadButton'
+import Stepper from '@/components/Stepper'
 
 export default {
   data () {
@@ -152,7 +154,8 @@ export default {
     }
   },
   components: {
-    UploadButton
+    UploadButton,
+    Stepper
   },
   created () {
     if (process.browser) {
