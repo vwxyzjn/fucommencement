@@ -1,10 +1,13 @@
 <template>
   <v-app dark>
-    <main>
-      <v-container fluid fill-height>
+    <v-toolbar app fixed class="deep-purple white--text"> 
+      <v-toolbar-title v-text="title"></v-toolbar-title> 
+    </v-toolbar> 
+    <v-content>
+      <v-container fluid grid-list-xl>
         <nuxt />
       </v-container>
-    </main>
+    </v-content>
   </v-app>
 </template>
 
