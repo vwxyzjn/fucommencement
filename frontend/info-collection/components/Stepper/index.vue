@@ -5,26 +5,22 @@
       v-divider
       v-stepper-step(step='2', :complete='e1 > 2' editable) Names Info
       v-divider
-      v-stepper-step(step='3' :complete='e1 > 3' editable) Name of step 3
+      v-stepper-step(step='3' :complete='e1 > 3' editable) Upload Files
       v-divider
-      v-stepper-step(step='4' editable) Name of step 4
+      v-stepper-step(step='4' editable) Review and Submit
     v-stepper-items
       v-stepper-content(step='1' editable)
         StepperDirectoryInfo(:studentData="studentData").mb-5
-        v-btn(color='primary', @click.native='e1 = 2; test()') Continue
-        v-btn(flat, dark) Cancel
+        v-btn(color='primary', @click.native='e1 = 2') Continue
       v-stepper-content(step='2' editable)
         StepperNamesInfo(:studentData="studentData").mb-5
         v-btn(color='primary', @click.native='e1 = 3') Continue
-        v-btn(flat, dark) Cancel
       v-stepper-content(step='3' editable)
         StepperAttachments(:studentData="studentData").mb-5
         v-btn(color='primary', @click.native='e1 = 4') Continue
-        v-btn(flat, dark) Cancel
       v-stepper-content(step='4' editable)
         StepperSubmission(:studentData="studentData").mb-5
         v-btn(color='primary', @click.native='submitForm') Submit
-        v-btn(flat, dark) Cancel
 </template>
 
 <script>
