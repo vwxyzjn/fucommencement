@@ -1,10 +1,9 @@
 <template lang="pug">
   v-layout(row wrap justify-center)
     v-flex(xs12 sm10)
-      v-card.my-3
+      v-card.my-3.elevation-12
         v-card-media.deep-purple.white--text
-          span.headline.my-4.ml-4 Please fill in the following form
-                
+          span.headline.my-4.ml-4 Furman University Commencement Form
         v-card-text
           v-layout(row wrap justify-content-center)
             v-flex(xs12 sm6).px-3

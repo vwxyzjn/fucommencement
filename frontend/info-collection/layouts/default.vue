@@ -1,16 +1,10 @@
 <template>
   <v-app dark>
-    <v-toolbar fixed class="deep-purple white--text">
-      <v-toolbar-title v-text="title"></v-toolbar-title>
-    </v-toolbar>
     <main>
-      <v-container fluid>
+      <v-container fluid fill-height>
         <nuxt />
       </v-container>
     </main>
-    <v-footer :fixed="fixed">
-      <span>&copy; 2017</span>
-    </v-footer>
   </v-app>
 </template>
 
