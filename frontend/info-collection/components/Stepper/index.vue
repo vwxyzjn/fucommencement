@@ -20,10 +20,13 @@
         v-btn(color='primary', @click.native='e1 = 4') Continue
       v-stepper-content(step='4' editable)
         StepperSubmission(:studentData="studentData").mb-5
-        v-btn.white--text(:loading='uploaded', @click.native="submitForm", :disabled='uploaded', color='blue-grey') submit
+        v-btn.white--text(:loading='uploading', @click.native="submitForm", color='blue-grey' depressed) submit
           v-icon(right, dark) cloud_upload
+        v-alert(color="success" icon="check_circle" :value="uploadSuccess" transition="scale-transition") You have successfully submitted your infomation. Thank you!
+        v-alert(color="error" icon="warning" :value="uploadFailure" transition="scale-transition") Something went wrong. Try submitting again in a few hours!
 
-        v-btn(color='primary', @click.native='submitForm') Submit
+        
+
 </template>
 
 <script>
@@ -36,7 +39,10 @@ export default {
   data () {
     return {
       e1: 1,
-      uploaded: false,
+      uploading: false,
+      uploadFinished: false,
+      uploadSuccess: false,
+      uploadFailure: false,
       studentData: {
         name: '',
         furmanID: '',
@@ -75,21 +81,22 @@ export default {
   },
   methods: {
     submitForm () {
+      let self = this
+      self.uploading = true
       this.furmanID = parseInt(this.furmanID)
       let data = new FormData()
       Object.keys(this.studentData).forEach(key => {
         data.append(key, this.studentData[key])
       })
       let xhr = new XMLHttpRequest()
-
       xhr.addEventListener('readystatechange', function () {
         if (this.readyState === 4) {
-          if (this.status === 200) {
-            alert('You have submitted the form successfully')
-          } else {
-            alert('System failed, try again later!')
-            console.log(this.responseText)
-          }
+          self.uploading = false
+          self.uploadFinished = true
+          console.log(this.status)
+          self.uploadSuccess = this.status === 200
+          self.uploadFailure = this.status !== 200
+          console.log(this.responseText)
         }
       })
 
