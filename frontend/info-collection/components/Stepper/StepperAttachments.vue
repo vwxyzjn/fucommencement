@@ -1,7 +1,7 @@
 <template lang="pug">
   v-form
     v-layout(row wrap)
-      v-flex(xs12 sm6).pr-2
+      v-flex(xs12 sm6)
         v-card 
           v-card-text 
             v-btn(block, @click.native.stop="profilePictureModal = true") Upload Profile Picture
@@ -21,7 +21,7 @@
               img(:src="profilePictureDataUrl" width="100%")
 
 
-      v-flex(xs12 sm6).pl-2
+      v-flex(xs12 sm6)
         v-card 
           v-card-text 
             v-btn(block, @click.native.stop="namePronunciationModal = true") Upload name pronunciation

@@ -3,7 +3,6 @@
     v-text-field(label="Diploma First Name" v-model="studentData.diplomaFirstName" required)
     v-text-field(label="Diploma Middle Name" v-model="studentData.diplomaMiddleName" required)
     v-text-field(label="Diploma Last Name" v-model="studentData.diplomaLastName" required)
-    v-text-field(label="Hometown and State" v-model="studentData.hometownAndState" required)
     v-text-field(label="Pronounce First Name" v-model="studentData.pronounceFirstName" required)
     v-text-field(label="Pronounce Middle Name" v-model="studentData.pronounceMiddleName" required)
     v-text-field(label="Pronounce Last Name" v-model="studentData.pronounceLastName" required)
