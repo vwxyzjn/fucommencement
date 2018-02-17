@@ -5,13 +5,10 @@
         v-card 
           v-card-text 
             v-btn(block, @click.native.stop="profilePictureModal = true") Upload Profile Picture
-            v-dialog(v-model="profilePictureModal" lazy max-width="600")
+            v-dialog(v-model="profilePictureModal" lazy max-width="700")
               v-card
                 v-card-title
                   .headline Please upload your profile picture
-                v-card-text
-                  p You may upload JPEG, PNG, and JPG.
-
                 v-card-actions
                   v-spacer
                   upload-button(title="Upload Profile Picture" :selectedCallback="profilePictureUpload").ml-0
@@ -25,16 +22,14 @@
         v-card 
           v-card-text 
             v-btn(block, @click.native.stop="namePronunciationModal = true") Upload name pronunciation
-            v-dialog(v-model="namePronunciationModal" lazy max-width="600")
+            v-dialog(v-model="namePronunciationModal" lazy max-width="700")
               v-card
                 v-card-title
-                  .headline Please upload your name pronunciation
-                v-card-text
-                  p You can either upload a video or sound file
+                  .headline Please upload a **VIDEO** of you pronouncing your name.
 
                 v-card-actions
                   v-spacer
-                  upload-button(title="Upload Name Pronunciation" :selectedCallback="namePronunciationUpload").ml-0
+                  upload-button(title="Upload" :selectedCallback="namePronunciationUpload").ml-0
 
             div(v-if="namePronunciationDataUrl").mb-2 
               div.my-3 You video of name pronunciatio will be the following. If you are not statisfied, you may click on button above upload another one.
