@@ -40,6 +40,14 @@
               div.my-3 You video of name pronunciatio will be the following. If you are not statisfied, you may click on button above upload another one.
               video(controls width="100%")
                 source(:src="namePronunciationDataUrl" type="video/mp4")
+    div.mt-3
+      v-btn(color='primary', @click.native='finishStep("back")') Back
+      v-btn(color='primary', @click.native='finishStep("next")') Continue
+
+    v-snackbar(:timeout="2000" top right vertical v-model='snackbar')
+      | you haven't uploaded your profile picture and name pronunciation yet.
+      v-btn(flat='', color='pink', @click.native='snackbar = false') Close
+
 </template>
 
 <script>
@@ -57,7 +65,8 @@ export default {
       namePronunciationModal: false,
       namePronunciationDataUrl: '',
       profilePictureModal: false,
-      profilePictureDataUrl: ''
+      profilePictureDataUrl: '',
+      snackbar: false
     }
   },
   methods: {
@@ -66,7 +75,10 @@ export default {
       this.namePronunciationModal = false
       let reader = new FileReader()
       reader.onload = (e) => {
-        this.namePronunciationDataUrl = e.target.result
+        this.namePronunciationDataUrl = false
+        setTimeout(() => {
+          this.namePronunciationDataUrl = e.target.result
+        }, 300) // give it some time
       }
       reader.readAsDataURL(file)
     },
@@ -75,9 +87,23 @@ export default {
       this.profilePictureModal = false
       let reader = new FileReader()
       reader.onload = (e) => {
-        this.profilePictureDataUrl = e.target.result
+        this.profilePictureDataUrl = false
+        setTimeout(() => {
+          this.profilePictureDataUrl = e.target.result
+        }, 300)
       }
       reader.readAsDataURL(file)
+    },
+    finishStep (direction) {
+      if (direction === 'back') {
+        this.$emit('finishStep', direction)
+        return
+      }
+      if (this.studentData.namePronunciation && this.studentData.profilePicture) {
+        this.$emit('finishStep', direction)
+      } else {
+        this.snackbar = true
+      }
     }
   },
   components: {
