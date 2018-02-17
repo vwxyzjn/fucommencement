@@ -1,25 +1,28 @@
 <template lang="pug">
   v-stepper.mt-3(v-model='e1').elevation-7
     v-stepper-header
-      v-stepper-step(step='1', :complete='e1 > 1' editable) About You
+      v-stepper-step(step='1', :complete='e1 > 1') About You
       v-divider
-      v-stepper-step(step='2', :complete='e1 > 2' editable) Names Info
+      v-stepper-step(step='2', :complete='e1 > 2') Names Info
       v-divider
-      v-stepper-step(step='3' :complete='e1 > 3' editable) Upload Files
+      v-stepper-step(step='3' :complete='e1 > 3') Upload Files
       v-divider
-      v-stepper-step(step='4' editable) Review and Submit
+      v-stepper-step(step='4') Review and Submit
     v-stepper-items
-      v-stepper-content(step='1' editable)
+      v-stepper-content(step='1')
         StepperDirectoryInfo(:studentData="studentData").mb-5
         v-btn(color='primary', @click.native='e1 = 2') Continue
-      v-stepper-content(step='2' editable)
+      v-stepper-content(step='2')
         StepperNamesInfo(:studentData="studentData").mb-5
+        v-btn(color='primary', @click.native='e1 = 1') Back
         v-btn(color='primary', @click.native='e1 = 3') Continue
-      v-stepper-content(step='3' editable)
+      v-stepper-content(step='3')
         StepperAttachments(:studentData="studentData").mb-5
+        v-btn(color='primary', @click.native='e1 = 2') Back
         v-btn(color='primary', @click.native='e1 = 4') Continue
-      v-stepper-content(step='4' editable)
+      v-stepper-content(step='4')
         StepperSubmission(:studentData="studentData").mb-5
+        v-btn(color='primary', @click.native='e1 = 3') Back
         v-btn.white--text(:loading='uploading', @click.native="submitForm", color='blue-grey' depressed) submit
           v-icon(right, dark) cloud_upload
         v-alert(color="success" icon="check_circle" :value="uploadSuccess" transition="scale-transition") You have successfully submitted your infomation. Thank you!
