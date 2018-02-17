@@ -112,7 +112,7 @@ export default {
   },
   mounted () {
     if (process.browser) {
-      setTimeout(this.initliaze(), 300)  // if I don't do this, some weird bugs appear
+      setTimeout(this.initliaze(), 300) // if I don't do this, some weird bugs appear
     }
   }
 }
