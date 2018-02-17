@@ -2,7 +2,7 @@
 <ais-index
   app-id="TH20RENZY1"
   api-key="9c35285d5663829bc9b0a13b3ee8f45e"
-  index-name="student"
+  :index-name="$store.state.indexName"
 >
   <v-app dark>
     <v-navigation-drawer
