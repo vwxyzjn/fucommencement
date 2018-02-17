@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-form
+  v-form(ref="form")
     div
       v-checkbox(
         :label="'By checking this box, I confirm to graduate on ' + studentData.anticipatedCompletionDate + ' '"
@@ -8,7 +8,7 @@
         required id="non-hidden-checkbox")
 
     v-btn(color='primary', @click.native="$emit('finishStep', 'back')") Back
-    v-btn.white--text(:loading='uploading', @click.native="submitForm", color='blue-grey' depressed) submit
+    v-btn.white--text(:loading='uploading', @click.native="submitForm", color='blue-grey') submit
       v-icon(right, dark) cloud_upload
     v-snackbar(:timeout="2000" top right vertical v-model='uploadFinished' :color="color")
       div(v-if="color=='success'") You have successfully submitted your infomation. Thank you!
@@ -34,6 +34,9 @@ export default {
   },
   methods: {
     submitForm () {
+      if (!this.$refs.form.validate()) {
+        return
+      }
       let self = this
       self.uploading = true
       this.furmanID = parseInt(this.furmanID)

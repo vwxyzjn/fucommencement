@@ -25,7 +25,7 @@ export default {
       miniVariant: false,
       right: true,
       rightDrawer: false,
-      title: 'Furman Commencement'
+      title: 'Furman University Commencement Form'
     }
   }
 }

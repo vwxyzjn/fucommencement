@@ -77,6 +77,11 @@ export default {
         this.e1 -= 1
       }
     }
+  },
+  head () {
+    return {
+      title: 'Furman University Commencement Form'
+    }
   }
 }
 </script>
