@@ -10,23 +10,13 @@
       v-stepper-step(step='4') Review and Submit
     v-stepper-items
       v-stepper-content(step='1')
-        StepperDirectoryInfo(:studentData="studentData").mb-5
-        v-btn(color='primary', @click.native='e1 = 2') Continue
+        StepperDirectoryInfo(:studentData="studentData" @finishStep="handleStep").mb-5
       v-stepper-content(step='2')
-        StepperNamesInfo(:studentData="studentData").mb-5
-        v-btn(color='primary', @click.native='e1 = 1') Back
-        v-btn(color='primary', @click.native='e1 = 3') Continue
+        StepperNamesInfo(:studentData="studentData" @finishStep="handleStep").mb-5
       v-stepper-content(step='3')
-        StepperAttachments(:studentData="studentData").mb-5
-        v-btn(color='primary', @click.native='e1 = 2') Back
-        v-btn(color='primary', @click.native='e1 = 4') Continue
+        StepperAttachments(:studentData="studentData" @finishStep="handleStep").mb-5
       v-stepper-content(step='4')
-        StepperSubmission(:studentData="studentData").mb-5
-        v-btn(color='primary', @click.native='e1 = 3') Back
-        v-btn.white--text(:loading='uploading', @click.native="submitForm", color='blue-grey' depressed) submit
-          v-icon(right, dark) cloud_upload
-        v-alert(color="success" icon="check_circle" :value="uploadSuccess" transition="scale-transition") You have successfully submitted your infomation. Thank you!
-        v-alert(color="error" icon="warning" :value="uploadFailure" transition="scale-transition") Something went wrong. Try submitting again in a few hours!
+        StepperSubmission(:studentData="studentData" @finishStep="handleStep").mb-5
 
         
 
@@ -42,14 +32,10 @@ export default {
   data () {
     return {
       e1: 1,
-      uploading: false,
-      uploadFinished: false,
-      uploadSuccess: false,
-      uploadFailure: false,
       studentData: {
         name: '',
         furmanID: '',
-        anticipatedCompletionDate: null,
+        anticipatedCompletionDate: '',
         degreeExpected: '',
         majors: '',
         interdisciplinaryMinor: '',
@@ -83,29 +69,13 @@ export default {
     StepperSubmission
   },
   methods: {
-    submitForm () {
-      let self = this
-      self.uploading = true
-      this.furmanID = parseInt(this.furmanID)
-      let data = new FormData()
-      Object.keys(this.studentData).forEach(key => {
-        data.append(key, this.studentData[key])
-      })
-      let xhr = new XMLHttpRequest()
-      xhr.addEventListener('readystatechange', function () {
-        if (this.readyState === 4) {
-          self.uploading = false
-          self.uploadFinished = true
-          console.log(this.status)
-          self.uploadSuccess = this.status === 200
-          self.uploadFailure = this.status !== 200
-          console.log(this.responseText)
-        }
-      })
-
-      xhr.open('POST', this.$store.state.baseURL + '/commencementPOST')
-      console.log(xhr)
-      xhr.send(data)
+    handleStep (direction) {
+      console.log(direction, 'xixi')
+      if (direction === 'next') {
+        this.e1 += 1
+      } else {
+        this.e1 -= 1
+      }
     }
   }
 }
